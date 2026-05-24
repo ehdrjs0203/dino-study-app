@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+  <!-- 배경 -->
+  <rect width="512" height="512" rx="100" fill="#0f0f1a"/>
+  <rect width="512" height="512" rx="100" fill="url(#bg)"/>
+  <defs>
+    <radialGradient id="bg" cx="30%" cy="30%">
+      <stop offset="0%" stop-color="#7c3aed" stop-opacity="0.5"/>
+      <stop offset="100%" stop-color="#0f0f1a" stop-opacity="0"/>
+    </radialGradient>
+  </defs>
+
+  <!-- 공룡 몸통 -->
+  <ellipse cx="256" cy="330" rx="110" ry="85" fill="#7c3aed"/>
+  <!-- 목 -->
+  <rect x="215" y="220" width="64" height="100" rx="32" fill="#7c3aed"/>
+  <!-- 머리 -->
+  <ellipse cx="256" cy="200" rx="80" ry="64" fill="#7c3aed"/>
+  <!-- 주둥이 -->
+  <path d="M178 210 Q165 222 178 235 Q200 230 215 220 Z" fill="#6d28d9"/>
+  <!-- 눈 흰자 -->
+  <circle cx="240" cy="186" r="22" fill="white"/>
+  <!-- 눈동자 -->
+  <circle cx="244" cy="190" r="13" fill="#1e1b4b"/>
+  <!-- 눈 하이라이트 -->
+  <circle cx="250" cy="184" r="5" fill="white"/>
+  <!-- 등 돌기 -->
+  <polygon points="240,140 228,170 252,170" fill="#a855f7"/>
+  <polygon points="258,132 246,163 270,163" fill="#a855f7"/>
+  <polygon points="276,140 264,170 288,170" fill="#a855f7"/>
+  <!-- 꼬리 -->
+  <path d="M358 340 Q400 320 405 345 Q395 370 368 355" fill="#6d28d9"/>
+  <!-- 다리 -->
+  <rect x="210" y="400" width="40" height="60" rx="20" fill="#6d28d9"/>
+  <rect x="275" y="405" width="40" height="60" rx="20" fill="#6d28d9"/>
+  <!-- 배 -->
+  <ellipse cx="256" cy="335" rx="70" ry="52" fill="#a78bfa" opacity="0.4"/>
+  <!-- 별 장식 -->
+  <text x="370" y="160" font-size="60" fill="#fbbf24" opacity="0.9">✦</text>
+  <text x="100" y="140" font-size="40" fill="#c084fc" opacity="0.7">✦</text>
+</svg>

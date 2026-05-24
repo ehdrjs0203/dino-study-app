@@ -2,6 +2,78 @@
 // 🦕 다이노 스터디 - 공부 시간으로 공룡 진화 앱
 // ===================================================
 
+// ===== Service Worker 등록 (PWA) =====
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('/sw.js')
+      .then(reg => console.log('[PWA] Service Worker 등록 성공:', reg.scope))
+      .catch(err => console.log('[PWA] Service Worker 등록 실패:', err));
+  });
+}
+
+// ===== PWA 설치 배너 =====
+let deferredPrompt = null;
+window.addEventListener('beforeinstallprompt', (e) => {
+  e.preventDefault();
+  deferredPrompt = e;
+  showInstallBanner();
+});
+
+function showInstallBanner() {
+  // 이미 설치된 경우 무시
+  if (window.matchMedia('(display-mode: standalone)').matches) return;
+
+  const banner = document.createElement('div');
+  banner.id = 'installBanner';
+  banner.innerHTML = `
+    <div style="
+      position: fixed; bottom: 20px; left: 50%; transform: translateX(-50%);
+      background: linear-gradient(135deg, #7c3aed, #6d28d9);
+      color: white; padding: 14px 20px; border-radius: 16px;
+      display: flex; align-items: center; gap: 12px;
+      box-shadow: 0 8px 32px rgba(124,58,237,0.5);
+      z-index: 999; font-family: 'Noto Sans KR', sans-serif;
+      max-width: 340px; width: 90%;
+      animation: slideUp 0.4s ease;
+    ">
+      <span style="font-size:2rem">🦕</span>
+      <div style="flex:1">
+        <div style="font-weight:700; font-size:0.9rem">홈 화면에 추가하기</div>
+        <div style="font-size:0.75rem; opacity:0.8; margin-top:2px">앱처럼 사용할 수 있어요!</div>
+      </div>
+      <button onclick="installPWA()" style="
+        background: white; color: #7c3aed;
+        border: none; padding: 8px 14px; border-radius: 10px;
+        font-weight: 700; font-size: 0.85rem; cursor: pointer;
+        white-space: nowrap;
+      ">설치</button>
+      <button onclick="document.getElementById('installBanner').remove()" style="
+        background: transparent; border: none; color: white;
+        font-size: 1.2rem; cursor: pointer; padding: 4px;
+      ">✕</button>
+    </div>
+  `;
+  document.body.appendChild(banner);
+
+  // 배너 슬라이드 업 애니메이션
+  const style = document.createElement('style');
+  style.textContent = `@keyframes slideUp { from { opacity:0; transform: translateX(-50%) translateY(20px); } to { opacity:1; transform: translateX(-50%) translateY(0); } }`;
+  document.head.appendChild(style);
+}
+
+function installPWA() {
+  if (!deferredPrompt) return;
+  deferredPrompt.prompt();
+  deferredPrompt.userChoice.then(result => {
+    if (result.outcome === 'accepted') {
+      console.log('[PWA] 설치 완료!');
+    }
+    deferredPrompt = null;
+    const banner = document.getElementById('installBanner');
+    if (banner) banner.remove();
+  });
+}
+
 // ===== 진화 단계 정의 =====
 // 필요 누적 시간(분) 기준
 const STAGES = [
