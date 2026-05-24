@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>🦕 공룡 진화 공부 앱</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🦕</text></svg>">
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="app">
+
+    <!-- 헤더 -->
+    <header class="header">
+      <h1>🦕 다이노 스터디</h1>
+      <p class="subtitle">공부할수록 공룡이 진화해요!</p>
+    </header>
+
+    <!-- 공룡 진화 영역 -->
+    <section class="dino-section">
+      <div class="evolution-badge" id="evolutionBadge">🥚 알</div>
+      <div class="dino-stage-label" id="stageLabel">진화 단계 1 / 7</div>
+
+      <div class="dino-container">
+        <div class="dino-aura" id="dinoAura"></div>
+        <div class="dino-display" id="dinoDisplay">
+          <!-- SVG 공룡이 들어감 -->
+        </div>
+        <div class="dino-shadow"></div>
+      </div>
+
+      <!-- 진화 진행바 -->
+      <div class="evolution-bar-wrap">
+        <div class="evolution-bar-label">
+          <span>다음 진화까지</span>
+          <span id="nextEvoTime">30분 남음</span>
+        </div>
+        <div class="evolution-bar-bg">
+          <div class="evolution-bar-fill" id="evoBarFill"></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 공부 타이머 -->
+    <section class="timer-section">
+      <div class="timer-display">
+        <div class="timer-time" id="timerDisplay">00:00:00</div>
+        <div class="timer-label">오늘 공부 시간</div>
+      </div>
+
+      <div class="timer-controls">
+        <button class="btn btn-start" id="startBtn" onclick="startTimer()">▶ 시작</button>
+        <button class="btn btn-stop" id="stopBtn" onclick="stopTimer()" disabled>⏸ 일시정지</button>
+        <button class="btn btn-reset" onclick="resetTimer()">↺ 리셋</button>
+      </div>
+    </section>
+
+    <!-- 통계 -->
+    <section class="stats-section">
+      <div class="stats-grid">
+        <div class="stat-card">
+          <div class="stat-icon">📚</div>
+          <div class="stat-value" id="totalHours">0</div>
+          <div class="stat-label">총 공부 시간(시)</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🔥</div>
+          <div class="stat-value" id="streakDays">0</div>
+          <div class="stat-label">연속 공부일</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">⭐</div>
+          <div class="stat-value" id="evolutionLevel">1</div>
+          <div class="stat-label">진화 레벨</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-icon">🏆</div>
+          <div class="stat-value" id="todayMinutes">0</div>
+          <div class="stat-label">오늘 분</div>
+        </div>
+      </div>
+    </section>
+
+    <!-- 진화 단계 안내 -->
+    <section class="stages-section">
+      <h2>📜 진화 로드맵</h2>
+      <div class="stages-list" id="stagesList"></div>
+    </section>
+
+    <!-- 진화 이펙트 모달 -->
+    <div class="evolution-modal" id="evolutionModal">
+      <div class="evolution-modal-inner">
+        <div class="modal-dino" id="modalDino"></div>
+        <div class="modal-title">✨ 진화! ✨</div>
+        <div class="modal-name" id="modalName"></div>
+        <div class="modal-desc" id="modalDesc"></div>
+        <button class="btn btn-start" onclick="closeModal()">계속 공부하기 💪</button>
+      </div>
+    </div>
+
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
